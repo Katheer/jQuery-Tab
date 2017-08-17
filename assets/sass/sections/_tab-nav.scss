@@ -1,0 +1,48 @@
+.tab-nav,
+.tab-content {
+	width: 100%;
+	float: left;	
+	opacity: 0;
+	z-index: -1;
+	transition: 0.5s ease;
+	-moz-transition: 0.5s ease;
+	-webkit-transition: 0.5s ease;
+	transition-delay: 0.5s;
+	-webkit-transition-delay: 0.5s;
+	-moz-transition-delay: 0.5s;
+	position: relative;
+}
+
+.tab-nav {
+	top: -10px; 
+	> div {
+		float: left;
+		padding: 10px 15px;
+		color: #333;
+		border-top: 1px solid #666;
+		border-right: 1px solid #666;
+		border-bottom: 1px solid #666;
+		background-color: #fff;
+		cursor: pointer;
+		&:first-child {
+			border-left: 1px solid #666;
+		}
+		&:hover {
+			background-color: #666;
+			color: #fff;
+		}
+		&.active {
+			background-color: #666;
+			color: #fff;
+		}
+	}
+}
+
+.tab-active {
+	.tab-nav,
+	.tab-content {
+		opacity: 1;
+		z-index: 1;
+		top: 0;
+	}
+}

@@ -1,0 +1,29 @@
+.wrapper {
+	width: 100%;
+	max-width: 1000px;
+	margin: 50px auto;
+	display: block;
+}
+
+
+.tab-container {
+	width: 100%;
+	float: left;
+}
+
+
+.tab-container { 
+	background-color: rgba(0,0,0,0.3);
+	background-image: url(../images/loading.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 175px auto;
+	padding: 0;
+	transition: 0.8s ease;
+	-moz-transition: 0.8s ease;
+	-webkit-transition: 0.8s ease;
+	&.tab-active {
+		background-image: none;
+		background-color: transparent;
+	}
+}

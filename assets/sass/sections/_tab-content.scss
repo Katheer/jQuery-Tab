@@ -1,0 +1,16 @@
+.tab-content { 
+	margin: 5px 0 0 ;
+	top: 10px;
+	border: 1px solid #666;
+	> div {
+		display: none;
+		padding: 20px 10px;
+		&:first-child {
+			display: block;
+		}
+		P {
+			color: #333;
+			margin: 0 0 10px;
+		}
+	}
+}

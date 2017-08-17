@@ -1,0 +1,108 @@
+/**--- declare the font ----**/
+@import url("https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900");
+/**--- reset default styles ----**/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif; }
+
+body * {
+  outline: none !important; }
+
+a,
+a:focus,
+a:active,
+a:hover {
+  text-decoration: none; }
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+  ul li {
+    list-styl-type: none; }
+
+.wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 50px auto;
+  display: block; }
+
+.tab-container {
+  width: 100%;
+  float: left; }
+
+.tab-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  background-image: url(../images/loading.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 175px auto;
+  padding: 0;
+  transition: 0.8s ease;
+  -moz-transition: 0.8s ease;
+  -webkit-transition: 0.8s ease; }
+  .tab-container.tab-active {
+    background-image: none;
+    background-color: transparent; }
+
+.tab-nav,
+.tab-content {
+  width: 100%;
+  float: left;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.5s ease;
+  -moz-transition: 0.5s ease;
+  -webkit-transition: 0.5s ease;
+  transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+  -moz-transition-delay: 0.5s;
+  position: relative; }
+
+.tab-nav {
+  top: -10px; }
+  .tab-nav > div {
+    float: left;
+    padding: 10px 15px;
+    color: #333;
+    border-top: 1px solid #666;
+    border-right: 1px solid #666;
+    border-bottom: 1px solid #666;
+    background-color: #fff;
+    cursor: pointer; }
+    .tab-nav > div:first-child {
+      border-left: 1px solid #666; }
+    .tab-nav > div:hover {
+      background-color: #666;
+      color: #fff; }
+    .tab-nav > div.active {
+      background-color: #666;
+      color: #fff; }
+
+.tab-active .tab-nav,
+.tab-active .tab-content {
+  opacity: 1;
+  z-index: 1;
+  top: 0; }
+
+.tab-content {
+  margin: 5px 0 0;
+  top: 10px;
+  border: 1px solid #666; }
+  .tab-content > div {
+    display: none;
+    padding: 20px 10px; }
+    .tab-content > div:first-child {
+      display: block; }
+    .tab-content > div P {
+      color: #333;
+      margin: 0 0 10px; }
+
+/*# sourceMappingURL=style.css.map */

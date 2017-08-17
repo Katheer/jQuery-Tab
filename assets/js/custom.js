@@ -26,6 +26,7 @@ $(document).ready(function() {
 
     setTimeout(activeTabSection, tabactiveTimeline);
 
+
     $(tabnavWrapper + '>' + tabnavElement).click(function () {
     	var curentTabTrigger= $(this).attr('tab-trigger');
         var targetTabs =  $(tabtargetWrapper + '>' + tabtargetElement);

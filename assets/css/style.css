@@ -39,7 +39,7 @@ ul {
   float: left; }
 
 .tab-container {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   background-image: url(../images/loading.gif);
   background-repeat: no-repeat;
   background-position: center;
@@ -98,7 +98,7 @@ ul {
   border: 1px solid #666; }
   .tab-content > div {
     display: none;
-    padding: 20px 10px; }
+    padding: 25px 20px 15px; }
     .tab-content > div:first-child {
       display: block; }
     .tab-content > div P {

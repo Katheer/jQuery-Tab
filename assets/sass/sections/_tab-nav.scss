@@ -46,3 +46,10 @@
 		top: 0;
 	}
 }
+
+
+@media(max-width:767px) {
+	.tab-nav {
+		display: none;
+	}	
+}

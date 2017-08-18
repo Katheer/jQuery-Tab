@@ -2,15 +2,33 @@
 	margin: 5px 0 0 ;
 	top: 10px;
 	border: 1px solid #666;
-	> div {
+	> *[mobile-tab-trigger] {
+		display: none;
+	}
+	> *[tab-target] {
 		display: none;
 		padding: 25px 20px 15px;
-		&:first-child {
-			display: block;
-		}
 		P {
 			color: #333;
 			margin: 0 0 10px;
 		}
 	}
+	>  *[tab-target = 'tab-item-0'] {
+			display: block;
+		}
+}
+
+
+@media(max-width:767px) {
+	.tab-content { 
+		> *[mobile-tab-trigger] {
+			display: block;
+		}
+		> *[tab-target] {
+			display: none;
+		}
+		>  *[tab-target = 'tab-item-0'] {
+				display: none;
+			}
+	}	
 }

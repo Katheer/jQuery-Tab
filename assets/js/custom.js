@@ -12,36 +12,31 @@ $(document).ready(function() {
 	
 	var mobileClickElement = 'h2';
 
+    var mobileAccordian = 'true';
+    var mobileAccordianType = 'collapse-all'; // collapse-all, collapse-odd
+    var mobileAccordianFIrstLoad = 'open-one'; // all-open , open-one, , all-close
+    var mobileloadOpentabValue = 0; // Starting from 0 value
+
 	$(tabtargetWrapper + '>' + tabtargetElement).each(function (index) {
         $(this).attr('tab-target', 'tab-item-' + index);
     });
 	
     $(tabnavWrapper + '>' + tabnavElement).each(function (index) {
         $(this).attr('tab-trigger', 'tab-item-' + index);
-		var eachlinkAttr = $(this).attr('tab-trigger');
-		var eachlinkName = $(this).text();
-		var eachTabElement =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+eachlinkAttr+']');	
-		
-		if(mobileClickElement == '') {
-			var mobileAddingLink = '<div mobile-tab-trigger='+eachlinkAttr+'> <h2>'+ eachlinkName +'</h2> </div>';
-		}
-		else {
-			var mobileAddingLink = '<div mobile-tab-trigger='+eachlinkAttr+'> <'+ mobileClickElement +'>'+ eachlinkName +'</'+ mobileClickElement +'> </div>';
-		}
-		
-		eachTabElement.before(mobileAddingLink);
+        var eachlinkAttr = $(this).attr('tab-trigger');
+        var eachlinkName = $(this).text();
+        if(mobileAccordian == 'true' ) {
+    		var eachTabElement =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+eachlinkAttr+']');	
+    		
+    		if(mobileClickElement == '') {
+    			var mobileAddingLink = '<div mobile-tab-trigger='+eachlinkAttr+'> <h2>'+ eachlinkName +'</h2> </div>';
+    		}
+    		else {
+    			var mobileAddingLink = '<div mobile-tab-trigger='+eachlinkAttr+'> <'+ mobileClickElement +'>'+ eachlinkName +'</'+ mobileClickElement +'> </div>';
+    		}
+            eachTabElement.before(mobileAddingLink);
+        }
     });
-
-    /*
-		$(tabtargetWrapper + '>' + tabtargetElement + 'div[mobile-tab-trigger]').each(function (index) {
-			var mobilelinkAttr = $(this).attr('mobile-tab-trigger');	
-			var mobileTabElement = tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+mobilelinkAttr+']';
-			
-			//$(this).insertBefore(mobileTabElement );
-			$(this).addClass('x');
-		}); 
-	*/
-	
 
     $(tabnavWrapper + '>' + tabnavElement+':first-child').addClass(tabnavhighlightClass);
 
@@ -51,11 +46,9 @@ $(document).ready(function() {
 
     setTimeout(activeTabSection, tabactiveTimeline);
 
-    var mobileTrigger = $('*[mobile-tab-trigger]');
-
     $(tabnavWrapper + '>' + tabnavElement).click(function () {
     	var curentTabTrigger= $(this).attr('tab-trigger');
-        var targetTabs =  $(tabtargetWrapper + '>' + tabtargetElement);
+        var targetTabs =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]');
     	var displayTab =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+curentTabTrigger+']');
         
         targetTabs.hide();
@@ -65,15 +58,36 @@ $(document).ready(function() {
         $(this).addClass(tabnavhighlightClass);
     });
 
-    $mobileTrigger.click(function () {
-    	var curentMobileTabTrigger= $(this).attr('mobile-tab-trigger');
-        var targetMobileTabs =  $(tabtargetWrapper + '>' + tabtargetElement);
-    	var displayMobileTab =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+curentMobileTabTrigger+']');
+    /*************** All clear ***************/
+    if(mobileAccordian == 'true' ) {
+        var mobileTrigger = $(tabtargetWrapper '*[mobile-tab-trigger]');
         
-        targetMobileTabs.slideUp();
-        $mobileTrigger.removeClass(tabnavhighlightClass);
+        mobileTrigger.removeClass('active');
+        $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]').removeClass('mobile-tab-visible');
 
-        targetMobileTabs.slideDown();
-        $(this).addClass(tabnavhighlightClass);
-    });
+        if(mobileAccordianFIrstLoad =='open-one'){
+            var mobileAccordianActiveNav = $(tabtargetWrapper '*[mobile-tab-trigger="tab-item-'+mobileloadOpentabValue+'"]'); 
+            var mobileAccordianActiveTab = $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+mobileloadOpentabValue+']');
+            mobileAccordianActiveNav.addClass('active');
+            mobileAccordianActiveTab.addClass('mobile-tab-visible');
+        }
+        
+        if(mobileAccordianFIrstLoad =='all-open') {
+            mobileTrigger.addClass('active');
+            $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]').addClass('mobile-tab-visible');
+        }
+
+
+        mobileTrigger.click(function () {
+        	var curentMobileTabTrigger= $(this).attr('mobile-tab-trigger');
+            var targetMobileTabs =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]');
+        	var displayMobileTab =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+curentMobileTabTrigger+']');
+            
+            targetMobileTabs.slideUp();
+            mobileTrigger.removeClass(tabnavhighlightClass);
+
+            displayMobileTab.slideDown();
+            $(this).addClass(tabnavhighlightClass);
+        });
+    }
 });

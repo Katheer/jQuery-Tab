@@ -13,9 +13,6 @@ $(document).ready(function() {
 	var mobileClickElement = 'h2';
 
     var mobileAccordian = 'true';
-    var mobileAccordianType = 'collapse-all'; // collapse-all, collapse-odd
-    var mobileAccordianFIrstLoad = 'open-one'; // all-open , open-one, , all-close
-    var mobileloadOpentabValue = 0; // Starting from 0 value
 
 	$(tabtargetWrapper + '>' + tabtargetElement).each(function (index) {
         $(this).attr('tab-target', 'tab-item-' + index);
@@ -26,8 +23,7 @@ $(document).ready(function() {
         var eachlinkAttr = $(this).attr('tab-trigger');
         var eachlinkName = $(this).text();
         if(mobileAccordian == 'true' ) {
-    		var eachTabElement =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+eachlinkAttr+']');	
-    		
+    		var eachTabElement =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+eachlinkAttr+']');	    		
     		if(mobileClickElement == '') {
     			var mobileAddingLink = '<div mobile-tab-trigger='+eachlinkAttr+'> <h2>'+ eachlinkName +'</h2> </div>';
     		}
@@ -50,44 +46,20 @@ $(document).ready(function() {
     	var curentTabTrigger= $(this).attr('tab-trigger');
         var targetTabs =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]');
     	var displayTab =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+curentTabTrigger+']');
-        
-        targetTabs.hide();
-        $(tabnavWrapper + '>' + tabnavElement).removeClass(tabnavhighlightClass);
+        if (!$(this).hasClass(tabnavhighlightClass)) {
+			targetTabs.hide();
+			$(tabnavWrapper + '>' + tabnavElement).removeClass(tabnavhighlightClass);
 
-        displayTab.fadeIn(tabfadingTimeline);
-        $(this).addClass(tabnavhighlightClass);
+			displayTab.fadeIn(tabfadingTimeline);
+			$(this).addClass(tabnavhighlightClass);
+		}
     });
 
-    /*************** All clear ***************/
-    if(mobileAccordian == 'true' ) {
-        var mobileTrigger = $(tabtargetWrapper '*[mobile-tab-trigger]');
-        
-        mobileTrigger.removeClass('active');
-        $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]').removeClass('mobile-tab-visible');
 
-        if(mobileAccordianFIrstLoad =='open-one'){
-            var mobileAccordianActiveNav = $(tabtargetWrapper '*[mobile-tab-trigger="tab-item-'+mobileloadOpentabValue+'"]'); 
-            var mobileAccordianActiveTab = $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+mobileloadOpentabValue+']');
-            mobileAccordianActiveNav.addClass('active');
-            mobileAccordianActiveTab.addClass('mobile-tab-visible');
-        }
-        
-        if(mobileAccordianFIrstLoad =='all-open') {
-            mobileTrigger.addClass('active');
-            $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]').addClass('mobile-tab-visible');
-        }
-
-
-        mobileTrigger.click(function () {
-        	var curentMobileTabTrigger= $(this).attr('mobile-tab-trigger');
-            var targetMobileTabs =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target]');
-        	var displayMobileTab =  $(tabtargetWrapper + '>' + tabtargetElement+'[tab-target='+curentMobileTabTrigger+']');
-            
-            targetMobileTabs.slideUp();
-            mobileTrigger.removeClass(tabnavhighlightClass);
-
-            displayMobileTab.slideDown();
-            $(this).addClass(tabnavhighlightClass);
-        });
-    }
+	var mobileTrigger = $(tabtargetWrapper + '*[mobile-tab-trigger]');
+	
+	
+	mobileTrigger.click(function () {
+		alert(curentMobileTabTrigger);
+	}); 
 });
